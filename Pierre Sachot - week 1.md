@@ -2,7 +2,8 @@
 
 1. First task :
 During this first week in Kichwa coders company, I worked on divers topics. 
-The first one was to find errors in examples to understand how github works and how to use it. 
+The first one was to find errors in examples to understand how github works and how to use it, and I added a function in utils to display 
+the call name function.
 
 1. Second Task :
 The second was to work on Katacada, which is a website which permite to create scenarios, and to implement a shell online in a Website. 
@@ -13,4 +14,5 @@ We achieved to download a git project and to generate it, now, to continue the i
 
 1. Final Task :
 My last mission was to create a game of life, including the january library. 
-I worked on this project for the last two days, and I arrived to something working, the problem is that only one direction is evolving and cells who would need to die are keeping alive…
+I worked on this project for the last two days, and I arrived to something working, the problem is that only one direction is evolving 
+and cells who would need to die are keeping alive… I need to change that and to correct my code  to make it works.
