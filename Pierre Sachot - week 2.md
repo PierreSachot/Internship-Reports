@@ -8,5 +8,5 @@ When the Slice javadoc was good and done, I worked on the SliceND documentation,
 I saw in the past how to write a documentation and how to generate the Javadoc, but stuff like include code, make references between classes,
 rules about names functions started by "is", all those things were not study at school. So this was really interesting and helpful.
 
-To conclude, writing documentation during this week was an interesting thing, which allows me to learned things I didn't knew before and to know how to create
+To conclude, writing documentation during this week was an interesting thing, which allows me to learn things I didn't knew before and to know how to create
 a correct Javadoc user-friendly.
