@@ -1,10 +1,10 @@
 # Pierre Sachot internship report week 2
 
 During this week, I worked on divers topics, but here we will focuse on writing the Java documentation because this is the point on which I worked most part of time. To start I worked on others authors javadoc to understand how do they write it to make it understandable easily.
-So I focused on the ArrayList documentation to see how to present the class and how to define what it does. 
-After that I wrote a first version of the Slice Javadoc, and explain it by the best way I was thinking of. Some modifications were required 
+So I focused on the [ArrayList](https://docs.oracle.com/javase/7/docs/api/java/util/ArrayList.html) documentation to see how to present the class and how to define what it does. 
+After that I wrote a first version of the [Slice](https://eclipse.org/january/apidocs/2.0.1/org/eclipse/january/dataset/Slice.html) Javadoc, and explain it by the best way I was thinking of. Some modifications were required 
 so I made them and asked again to push it.
-When the Slice javadoc was good and done, I worked on the SliceND documentation, and after on the SliceIterator. This was interesting because
+When the Slice javadoc was good and done, I worked on the [SliceND](https://eclipse.org/january/apidocs/2.0.1/org/eclipse/january/dataset/SliceND.html) documentation, and after on the [SliceIterator](https://eclipse.org/january/apidocs/2.0.1/org/eclipse/january/dataset/SliceIterator.html). This was interesting because
 I saw in the past how to write a documentation and how to generate the Javadoc, but stuff like include code, make references between classes,
 rules about names functions started by "is", all those things were not study at school. So this was really interesting and helpful.
 
