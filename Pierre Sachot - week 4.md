@@ -1,4 +1,4 @@
-# Pierre Sachot internship report week 3
+# Pierre Sachot internship report week 4
 
 During this week, I worked with Yannick on fixing the CDT source not found editor problem.
 
