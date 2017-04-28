@@ -31,7 +31,9 @@ This is the class which is called by openEditor, it is the source not found edit
 - The first thing to do was to create the "Preferences..." button and a text, Yannick did it in the `createButtons()` function.
 - Second thing was to create the listener which will open the Preferences on the right page, this means the Debug page in our case. So to open 
 the preferences on the right page, you need to do like this :
-`PreferencesUtil.createPreferenceDialogOn(parent.getShell(), SourceLookupUIMessages.CSourceNotFoundEditor_8, null, null).open();`
+```Java
+PreferencesUtil.createPreferenceDialogOn(parent.getShell(), SourceLookupUIMessages.CSourceNotFoundEditor_8, null, null).open();
+```
 the CSourceNotFoundEditor_8 is a String containing org.eclipse.cdt.debug.ui.CDebugPreferencePage which is the class name.
 
 ### CDebugPreferencePage :
@@ -42,17 +44,23 @@ them and use them. The last thing was to put the debug preferences values in CCo
   - The second thing was to create the variables which will store the preference value. This value is a String store in the CCorePreferenceConstants
   class.
   To get a preference String value, you need to use :
-  `DefaultScope.INSTANCE.getNode(CDebugCorePlugin.PLUGIN_ID).get(CCorePreferenceConstants.YOUR_PREFERENCE_NAME, null);`
+  ```Java
+  DefaultScope.INSTANCE.getNode(CDebugCorePlugin.PLUGIN_ID).get(CCorePreferenceConstants.YOUR_PREFERENCE_NAME, null);
+  ```
   
   And to store it :
   
-  `InstanceScope.INSTANCE.getNode(CCorePlugin.PLUGIN_ID).put(CCorePreferenceConstants.YOUR_PREFERENCE_NAME, "Your text");`
+  ```Java
+  InstanceScope.INSTANCE.getNode(CCorePlugin.PLUGIN_ID).put(CCorePreferenceConstants.YOUR_PREFERENCE_NAME, "Your text");`
+  ```
   
   Here we created a preference named : SHOW_SOURCE_NOT_FOUND_EDITOR which can take 3 values, defined at the begining of the CDebugPreferencePage class : 
   
-  `private String all_time = "all_time"; //$NON-NLS-1$`<br>
-	`private String sometimes = "sometimes"; //$NON-NLS-1$`<br>
-	`private String never = "never"; //$NON-NLS-1$`
+  ```Java
+	private String all_time = "all_time"; //$NON-NLS-1$
+	private String sometimes = "sometimes"; //$NON-NLS-1$
+	private String never = "never"; //$NON-NLS-1$
+ ```
 	
   - The third thing was to know where to put the values and where to get them.
   So, you need to get them in the `setValues()` function because this is the function which get the preferences and set them correctly.
