@@ -6,8 +6,11 @@ During this week, I worked with Yannick on fixing the CDT source not found edito
 
 The problem we were against was that the source not found editor displayed everytime and sometimes it was not useful.
 The three cases where :
+
 	- When the source file is not found.
+	
 	- When the memory address is known but not the function name.
+	
 	- When the function name is known.
 	
 ### That is the previous version of the Source not found editor :
