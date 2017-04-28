@@ -5,12 +5,26 @@ During this week, I worked with Yannick on fixing the CDT source not found edito
 ## Problem description :
 
 The problem we were against was that the source not found editor displayed everytime and sometimes it was not useful.
+The three cases where :
+	- When the source file is not found.
+	- When the memory address is known but not the function name.
+	- When the function name is known.
+	
+###That is the previous version of the Source not found editor :
+[!before](http://image.prntscr.com/image/e5ef587d4fb3417aa9594fdb8cb9fb0b.png)
+
+And this is the new version :
+[!after](http://image.prntscr.com/image/b9f55e3f3ba94e499dcc3421b594e12b.png)
+
+###This is the previous version of the Debug preferences :
+[!before](http://image.prntscr.com/image/793a6e8862c6488b897867b4ab30b9f8.png)
+
+And this is the new version :
+[!after](http://image.prntscr.com/image/f407a70baf13440c8027ba6392ede376.png)
+
+
 
 ## How to resolve the problem ?
-### DsfSourceDisplayAdapter :
-This is the class which call the source not found editor, so here in the function openEditor, we needed to check preferences options to
-display it. 
-Those checks need to be done in `openEditor()` function because this is the function which 
 
 ### CSourceNotFoundEditor :
 This is the class which is called by openEditor, it is the source not found editor, in this class Yannick added a link to the preferences page to change the display choices. 
@@ -45,3 +59,13 @@ them and use them. The last thing was to put the debug preferences values in CCo
   Finally, to store a value, you need to add the code in `storeValues()`, like it's name, it will store the value inside of the preferences variables.
   - The last thing is really important, so **don't forget it** :
   You need to put the default value of the preference you want to add in `setDefaultValues()` to allows the user to get the original value of the preferences.
+
+
+### DsfSourceDisplayAdapter :
+This is the class which calls the source not found editor, so here in the function openEditor, we needed to check preferences options to
+display it.
+Those checks need to be done in `openEditor()` function because this is the function which open the Source not found editor.
+To do that, we created 2 cases the first one is when the user want to display the Editor all the time, and the second one is when the user only want to display it if the source file is not found. The last case doesn't need to be check because if the 2 others are false, it will not do it.
+
+To do that, we did it like that :
+[!how to display source not found editor](http://image.prntscr.com/image/bb4a2112940a43429f7f1fe3f7b28e1a.png)
