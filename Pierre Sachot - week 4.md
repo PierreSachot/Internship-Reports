@@ -11,16 +11,16 @@ The three cases where :
 	- When the function name is known.
 	
 ###That is the previous version of the Source not found editor :
-[!before](http://image.prntscr.com/image/e5ef587d4fb3417aa9594fdb8cb9fb0b.png)
+![before](http://image.prntscr.com/image/e5ef587d4fb3417aa9594fdb8cb9fb0b.png)
 
 And this is the new version :
-[!after](http://image.prntscr.com/image/b9f55e3f3ba94e499dcc3421b594e12b.png)
+![after](http://image.prntscr.com/image/b9f55e3f3ba94e499dcc3421b594e12b.png)
 
 ###This is the previous version of the Debug preferences :
-[!before](http://image.prntscr.com/image/793a6e8862c6488b897867b4ab30b9f8.png)
+![before](http://image.prntscr.com/image/793a6e8862c6488b897867b4ab30b9f8.png)
 
 And this is the new version :
-[!after](http://image.prntscr.com/image/f407a70baf13440c8027ba6392ede376.png)
+![after](http://image.prntscr.com/image/f407a70baf13440c8027ba6392ede376.png)
 
 
 
@@ -68,4 +68,4 @@ Those checks need to be done in `openEditor()` function because this is the func
 To do that, we created 2 cases the first one is when the user want to display the Editor all the time, and the second one is when the user only want to display it if the source file is not found. The last case doesn't need to be check because if the 2 others are false, it will not do it.
 
 To do that, we did it like that :
-[!how to display source not found editor](http://image.prntscr.com/image/bb4a2112940a43429f7f1fe3f7b28e1a.png)
+![how to display source not found editor](http://image.prntscr.com/image/bb4a2112940a43429f7f1fe3f7b28e1a.png)
