@@ -12,7 +12,7 @@ The three cases where :
 - When the function name is known.
 
 ___
-That is the previous version of the Source not found editor :
+<center>That is the previous version of the Source not found editor :</center>
 
 ![before](http://image.prntscr.com/image/e5ef587d4fb3417aa9594fdb8cb9fb0b.png)
 
@@ -20,7 +20,7 @@ And this is the new version : <br>
 ![after](http://image.prntscr.com/image/b9f55e3f3ba94e499dcc3421b594e12b.png)
 
 ___
-This is the previous version of the Debug preferences :
+<center>This is the previous version of the Debug preferences :</center>
 
 ![before](http://image.prntscr.com/image/793a6e8862c6488b897867b4ab30b9f8.png)
 
