@@ -10,16 +10,16 @@ The three cases where :
 	- When the memory address is known but not the function name.
 	- When the function name is known.
 	
-###That is the previous version of the Source not found editor :
+### That is the previous version of the Source not found editor :
 ![before](http://image.prntscr.com/image/e5ef587d4fb3417aa9594fdb8cb9fb0b.png)
 
-And this is the new version :
+And this is the new version : <br>
 ![after](http://image.prntscr.com/image/b9f55e3f3ba94e499dcc3421b594e12b.png)
 
-###This is the previous version of the Debug preferences :
+### This is the previous version of the Debug preferences :
 ![before](http://image.prntscr.com/image/793a6e8862c6488b897867b4ab30b9f8.png)
 
-And this is the new version :
+And this is the new version :<br>
 ![after](http://image.prntscr.com/image/f407a70baf13440c8027ba6392ede376.png)
 
 
