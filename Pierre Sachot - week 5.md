@@ -24,7 +24,7 @@ This mean that every part of Eclipse are an external module that is load. Eclips
 
  1. You need to download Eclipse's last version, and to follow this tutorial:
    - Eclipse last version: [Eclipse last build](http://download.eclipse.org/eclipse/downloads/) (Last integration Build)
-   - Tutorial: [tuto](https://wiki.eclipse.org/JDT_UI/How_to_Contribute)
+   - Tutorial: [Eclipse JDT Integration](https://wiki.eclipse.org/JDT_UI/How_to_Contribute)
    
  2. Launch Eclipse's last version and do "File->New->Project...":
  
@@ -103,7 +103,7 @@ You need to add some dependencies :
 
   - Search `javaCompletionProposalComputer`, select it and click "Finish":
 
-  [Extension point](https://github.com/PierreSachot/Internship-Reports/blob/master/images/week%205/Screenshot_13.png?raw=true)
+![Extension point](https://github.com/PierreSachot/Internship-Reports/blob/master/images/week%205/Screenshot_13.png?raw=true)
 
 Now you have your plugin base, but you don't know how to load the Regex proposals and first of all, find where they are.
 
@@ -112,6 +112,126 @@ Now you have your plugin base, but you don't know how to load the Regex proposal
 
 I knew that the Regex proposals already exists inside Eclipse because you can enable them when you do a CTRL+F.
 
-It took 2 days to find them, I used the debugger, by putting break points on function, and I finally 
+It took 2 days to find them, I used the debugger, by putting break points on function, and I finally found that Regex are in a class name: `FindReplaceDocumentAdapterContentProposalProvider.java`.
+To load every proposals, you need to do that:
+
+```Java
+FindReplaceDocumentAdapterContentProposalProvider finder = new FindReplaceDocumentAdapterContentProposalProvider(true);
+IContentProposal[] regex = finder.getProposals("", 0);
+```
+Here, in the regex array, there is all the proposals.
+
+Now you need to create your plugin using those propositions.
+
+## Coding the plugin:
+
+ 1. Create a new class with the name you want - here I chose "RegexProposalComputer.java" - and implements `IJavaCompletionProposalComputer.java` interface:
+ 
+![Regex class](https://github.com/PierreSachot/Internship-Reports/blob/master/images/week%205/Screenshot_14.png?raw=true)
+
+ 2. Create an other class which will be use to store the proposals from the `FindReplaceDocumentAdapterContentProposalProvider.java` and to use them -here we will name it `CompletionProposal.java`:
+  - For that implements the `ICompletionProposal` class
+
+![Completion proposal](https://github.com/PierreSachot/Internship-Reports/blob/master/images/week%205/Screenshot_15.png?raw=true)
+
+  - Past this code inside:
+  
+```Java
+import org.eclipse.jdt.ui.text.java.ContentAssistInvocationContext;
+import org.eclipse.jface.text.IDocument;
+import org.eclipse.jface.text.contentassist.ICompletionProposal;
+import org.eclipse.jface.text.contentassist.IContextInformation;
+import org.eclipse.swt.graphics.Image;
+
+public class CompletionProposal implements ICompletionProposal {
+	
+	private final String displayString;
+	private final String additionalString;
+	private final ContentAssistInvocationContext context;
+	
+	public CompletionProposal(final ContentAssistInvocationContext context, final String toDisplay, final String additionalInformations)
+	{
+		displayString = toDisplay;
+		additionalString = additionalInformations;
+		this.context = context;
+	}
+
+	 @Override
+     public String getDisplayString() {
+       // this is the label shown in the completion list
+       return displayString;
+     }
+
+     @Override
+     public String getAdditionalProposalInfo() {
+       // this is the additional piece of information shown when selected
+       return additionalString;
+     }
+
+     @Override
+     public IContextInformation getContextInformation() {
+       // @return the context information for this proposal or <code>null</code>
+       return null;
+     }
+
+     /** Inserts the proposed completion at the cursor position */
+     @Override
+     public void apply(IDocument document) {
+       int position = context.getViewer().getSelectedRange().x;
+       String currentText = document.get();
+       int index = context.getInvocationOffset();
+       String before = currentText.substring(0, index);
+       String after = currentText.substring(index);
+       document.set(before + getDisplayString() + after);
+       context.getViewer().setSelectedRange(position + getDisplayString().length() + 1, -1);
+     }
+
+     @Override
+     public org.eclipse.swt.graphics.Point getSelection(IDocument document) {
+       // If it returns * <code>null</code>, no new selection is set.
+       return null;
+     }
+
+     @Override
+     public Image getImage() {
+       //  @return the image to be shown or <code>null</code> if no image is desired
+       return null;
+     }
+
+}
+```
+
+   3. Come back in your RegexProposal.java and add this code inside the `computeCompletionProposals()` function:
+
+  ```Java
+  List<ICompletionProposal> res = new ArrayList<ICompletionProposal>();   
+
+  FindReplaceDocumentAdapterContentProposalProvider finder = new FindReplaceDocumentAdapterContentProposalProvider(true);
+  IContentProposal[] regex = finder.getProposals("", 0);
+  for(IContentProposal test : regex)
+  {
+     res.add(new CompletionProposal(context, test.getContent(), test.getDescription()));
+  }
+  return res;
+  ```
+The last thing to do is to change some settings inside the `plugin.xml`:
+You need to follow the color code to understand why I put those informations at those places.
+
+![plugin.xml](https://github.com/PierreSachot/Internship-Reports/blob/master/images/week%205/Screenshot_16.png?raw=true)
+
+For the `categoryId` the identifier come from the MANIFEST:
+
+![plugin.xml](https://github.com/PierreSachot/Internship-Reports/blob/master/images/week%205/Screenshot_17.png?raw=true)
+
+![plugin.xml](https://github.com/PierreSachot/Internship-Reports/blob/master/images/week%205/Screenshot_18.png?raw=true)
+
+Now you can start your plug-in, to do that, just do:
+
+![plugin.xml](https://github.com/PierreSachot/Internship-Reports/blob/master/images/week%205/Screenshot_19.png?raw=true)
+
+Then when you press "CTRL+SPACE", this completion proposal should show:
+
+![plugin.xml](https://github.com/PierreSachot/Internship-Reports/blob/master/images/week%205/Screenshot_20.png?raw=true)
+
 
 ## What's missing?
