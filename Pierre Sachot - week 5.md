@@ -1,3 +1,17 @@
+# Week 5:
+
+## Context:
+
+This week I worked on Eclipse JDT, this is the Java version of [Eclipse](https://eclipse.org/).
+My idea was to add a Regex completion proposal in Eclipse editor. In this document, I will tell you how did I do, what were my ideas and how to create your own stuff inside Eclipse JDT.
+
+**Important: *My code isn't done, I need to include my stuff inside of the Eclipse structure, so I will continue this blog during the entire time I'm working on this new feature.***
+
+## My ideas:
+
+## Create your Eclipse plug-in:
+
+
 
 The problem is, you don't have only one Hook inside of Eclipse, but a lot, you can see all hooks by following that :
 
