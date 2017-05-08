@@ -100,9 +100,12 @@ public static final String SHOW_SOURCE_NOT_FOUND_EDITOR_NEVER = "never"; //$NON-
  - The fourth and final stage is really important, so **don't forget it!** : You need to put the default value of the preference you want to add in setDefaultValues() to allows access to the original value of the preferences.
  
 ### DsfSourceDisplayAdapter:
-This is the class which calls CSourceNotFoundEditor, so here in the function openEditor, we needed to check preferences options to
-display it.
-Those checks need to be done in `openEditor()` function because this is the function which open CSourceNotFoundEditor.
-To do that, we created 2 cases the first one is when the user want to display the Editor all the time, and the second one is when the user only want to display it if the source file is not found. The last case doesn't need to be check because if the 2 others are false, it will not do it.
-To do that, we did it like that:
-![how to display CSourceNotFoundEditor](http://image.prntscr.com/image/bb4a2112940a43429f7f1fe3f7b28e1a.png)
+
+This is the class which calls CSourceNotFoundEditor, so here in the function openEditor, we needed to check the preferences options in order to know if you can display CSourceFoundEditor. These checks need to be carried out in openEditor() function because this is the function which opens the CSourceNotFoundEditor. To do that, we created two cases the first in which the user wants to display the Editor all the time, and the second for when the user only wants to display it if the source file is not found. The las case is an exclusion of the all time, so you don't need to check it because nothing is done in this case.
+To do that, we did it like that :  
+![how to display CSourceNotFoundEditor](https://github.com/PierreSachot/Internship-Reports/blob/master/images/Screenshot_5.png?raw=true)
+
+### Conclusion
+Now users have the capacity to disable CSourceNotFoundEditor window altogether or to choose for themselves when to display it. Thus saving time and improving the user experience of the Eclipse debugger. This is a great example of how working on an open source project can really benefit a whole community of users. But, a word of warning, CDT project isn't the easiest program to develop or the easiest to master, you need to understand other user's code and if you change it you need to retain its original logic and style.
+Fiddly perhaps but well worth it! The user community will appreciate your efforts and the flow of coding future work will be smoother and more efficient. A better user experience for everyone.
+
