@@ -16,66 +16,19 @@ In this post, we will show you how we replaced CSourceUserNot FoundEditor with a
 		
 2- We wanted to tackle that red link ! Red lettering is synonymous with big problems ! And yet the error message was merely informing the user that the source could not be found we felt a less alarmist style of text would be more appropriate..
 ___
-That is the previous version of CSourceNotFoundEditor:
+
+CSourceNotFoundEditor Dialog:
 
 Previous version	|	New version
 ------------------------:|:------------------
 ![](https://github.com/PierreSachot/Internship-Reports/blob/master/images/Screenshot_1.png?raw=true) | ![](https://github.com/PierreSachot/Internship-Reports/blob/master/images/Screenshot_2.png?raw=true)
 
-## How to resolve the problem ?
+CSourceNotFoundEditor Preferences:
 
-Skip to content
-This repository
-Search
-Pull requests
-Issues
-Gist
- @PierreSachot
- Sign out
- Watch 0
-  Star 0
-  Fork 0 PierreSachot/Internship-Reports
- Code  Issues 0  Pull requests 0  Projects 0  Wiki  Pulse  Graphs  Settings
-Internship-Reports/ 
-Pierre Sachot - week 4.md
-   or cancel
-    
- Edit file    Preview changes
-8
-In this post, we will show you how we replaced CSourceUserNot FoundEditor with a better user experience display.
-9
-​
-10
-## Problem description:
-11
-​
-12
-1- The problem we faced was that CSourceNotFoundEditor displayed on several occasions. For example:
-13
-        When the source file was not found
-14
-        When the memory address was known but not the function name
-15
-        When the function name was known
-16
-                
-17
-2- We wanted to tackle that red link ! Red lettering is synonymous with big problems ! And yet the error message was merely informing the user that the source could not be found we felt a less alarmist style of text would be more appropriate..
-18
-___
-19
-That is the previous version of CSourceNotFoundEditor:
-20
-​
-21
-Previous version        |       New version
-22
+Previous version	|	New version
 ------------------------:|:------------------
-23
-![](https://github.com/PierreSachot/Internship-Reports/blob/master/images/Screenshot_1.png?raw=true) | ![](https://github.com/PierreSachot/Internship-Reports/blob/master/images/Screenshot_2.png?raw=true)
-24
-​
-25
+![](https://github.com/PierreSachot/Internship-Reports/blob/master/images/Screenshot_3.png?raw=true) | ![](https://github.com/PierreSachot/Internship-Reports/blob/master/images/Screenshot_4.png?raw=true)
+
 ## How to resolve the problem ?
 
 ### CSourceNotFoundEditor:
