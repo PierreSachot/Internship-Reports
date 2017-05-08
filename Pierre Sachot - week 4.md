@@ -4,7 +4,7 @@ This week I worked with Yannick on fixing the CDT CSourceNotFoundEditor problem.
 
 ## Context:
 When the user was stepping into functions by running the debugger on the C Project, a window was opening on screen. This window was both alarming in appearance and obtrusive. 
-In addition, the message itself was unclear. For example, it could display "No source available for 0x02547", this information isn't really relevent to the user because he doesn't have an access to this memory address. Several users had complain about it and expressed a desire to disable the window (see: (stack overflow: "Eclipse often opens editors for hex numbers (addresses?) then fails to load anything")[http://stackoverflow.com/questions/43361654/eclipse-often-opens-editors-for-hex-numbers-addresses-then-fails-to-load-anyt/43412237]).
+In addition, the message itself was unclear. For example, it could display "No source available for 0x02547", this information isn't really relevent to the user because he doesn't have an access to this memory address. Several users had complain about it and expressed a desire to disable the window (see: [stack overflow: "Eclipse often opens editors for hex numbers (addresses?) then fails to load anything"](http://stackoverflow.com/questions/43361654/eclipse-often-opens-editors-for-hex-numbers-addresses-then-fails-to-load-anyt/43412237)).
 In this post, we will show you how we replaced CSourceUserNot FoundEditor with a better user experience display.
 
 ## Problem description:
@@ -20,7 +20,7 @@ That is the previous version of CSourceNotFoundEditor:
 
 Previous version	:|:	New version
 ------------------------:|:------------------
-[https://github.com/PierreSachot/Internship-Reports/blob/master/images/Screenshot_1.png?raw=true] :|: [https://github.com/PierreSachot/Internship-Reports/blob/master/images/Screenshot_2.png?raw=true]
+(https://github.com/PierreSachot/Internship-Reports/blob/master/images/Screenshot_1.png?raw=true) :|: (https://github.com/PierreSachot/Internship-Reports/blob/master/images/Screenshot_2.png?raw=true)
 
 ![before](http://image.prntscr.com/image/e5ef587d4fb3417aa9594fdb8cb9fb0b.png)
 
