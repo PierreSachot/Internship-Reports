@@ -21,7 +21,7 @@ CSourceNotFoundEditor Dialog:
 
 Previous version	|	New version
 ------------------------:|:------------------
-![](https://github.com/PierreSachot/Internship-Reports/blob/master/images/week%204/week%204/Screenshot_1.png?raw=true) | ![](https://github.com/PierreSachot/Internship-Reports/blob/master/images/week%204/Screenshot_2.png?raw=true)
+![](https://github.com/PierreSachot/Internship-Reports/blob/master/images/week%204/Screenshot_1.png?raw=true) | ![](https://github.com/PierreSachot/Internship-Reports/blob/master/images/week%204/Screenshot_2.png?raw=true)
 
 CSourceNotFoundEditor Preferences:
 
