@@ -20,7 +20,7 @@ That is the previous version of CSourceNotFoundEditor:
 
 Previous version	|	New version
 ------------------------:|:------------------
-[](https://github.com/PierreSachot/Internship-Reports/blob/master/images/Screenshot_1.png?raw=true) | [](https://github.com/PierreSachot/Internship-Reports/blob/master/images/Screenshot_2.png?raw=true)
+![](https://github.com/PierreSachot/Internship-Reports/blob/master/images/Screenshot_1.png?raw=true) | ![](https://github.com/PierreSachot/Internship-Reports/blob/master/images/Screenshot_2.png?raw=true)
 
 ![before](http://image.prntscr.com/image/e5ef587d4fb3417aa9594fdb8cb9fb0b.png)
 
