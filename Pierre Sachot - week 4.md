@@ -48,11 +48,11 @@ PreferencesUtil.createPreferenceDialogOn(parent.getShell(), "org.eclipse.cdt.deb
 
 ### CDebugPreferencePage:
 
-This class is the one which contains the debug preferences page. I set about modifying it so that the CSourceNot Found preferences could be re-set and access to them enabled. This included the option to modify PreferenceMessages.properties which contains the String values of the buttons and the PreferenceMessage.java to declare them and use them. The last thing was to put the debug preferences values in CCorePreferenceConstants. Which we did in 4 stages :
+This class is the one which contains the debug preferences page. I set about modifying it so that the CSourceNot Found preferences could be re-set and access to them enabled. This included the option to modify PreferenceMessages.properties which contains the String values of the buttons, and PreferenceMessage.java to declare them and use them. The last thing we did was to create a global value in CCorePreferenceConstants to get and set the display preferences. This we did in 4 stages :
 
-- The first was to create a group for the radio buttons. This is in the function createContents().
+- Firstly we created a group for the radio buttons. This is in the function createContents().
 
-- The second was to create the variables which intended to store the preference value. This value is a String store in the CCorePreferenceConstants class. To get a preference String value, you need to use:
+- Secondly we created the variable intended to store the preference value. This value is a String store in the CCorePreferenceConstants class. To get a preference String value, you need to use:
 
 ```Java
 
@@ -68,15 +68,37 @@ InstanceScope.INSTANCE.getNode(CCorePlugin.PLUGIN_ID).put(CCorePreferenceConstan
 ```
 Here we created a preference named : SHOW_SOURCE_NOT_FOUND_EDITOR which can take 3 values, defined at the begining of the CDebugPreferencePage class :
 
-  private String all_time = "all_time"; //$NON-NLS-1$
+  ```Java
+  /**
+ * Use to display by default the source not found editor
+ * @since 6.3
+ */
+public static final String SHOW_SOURCE_NOT_FOUND_EDITOR_DEFAULT = "all_time"; //$NON-NLS-1$
 
-  private String sometimes = "sometimes"; //$NON-NLS-1$
+/**
+ * Use to display all the time the source not found editor
+ * @since 6.3
+ */
+public static final String SHOW_SOURCE_NOT_FOUND_EDITOR_ALL_THE_TIME = "all_time"; //$NON-NLS-1$
 
-  private String never = "never"; //$NON-NLS-1$
+/**
+ * Use to display sometimes the source not found editor
+ * @since 6.3
+ */
+public static final String SHOW_SOURCE_NOT_FOUND_EDITOR_SOMETIMES = "sometimes"; //$NON-NLS-1$
 
-•       The third stage was to know where to put the values and where to get them. So, you need to get them in the setValues() function because this is the function which get preferences and sets them correctly. Finally, to store a value, you need to add the code in storeValues(), like it's name, it will store the value inside of the preferences variables.
+/**
+ * Use to don't display the source not found editor
+ * @since 6.3
+ */
+public static final String SHOW_SOURCE_NOT_FOUND_EDITOR_NEVER = "never"; //$NON-NLS-1$
 
-•       The final stage is really important, so don't forget it : You need to put the default value of the preference you want to add in setDefaultValues() to allows the user to get the original value of the preferences.
+```
+
+ - Thirdly, we need to find where to set the values and where to get them. So, to set the values on your components, it's made in the `setValues()` function.To store a value, you will need to add your code in `storeValues()`, like it's name suggests it will store the value inside of the glocal preferences variable.
+
+ - The fourth and final stage is really important, so **don't forget it!** : You need to put the default value of the preference you want to add in setDefaultValues() to allows access to the original value of the preferences.
+ 
 ### DsfSourceDisplayAdapter:
 This is the class which calls CSourceNotFoundEditor, so here in the function openEditor, we needed to check preferences options to
 display it.
