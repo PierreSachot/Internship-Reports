@@ -22,24 +22,19 @@ Previous version	|	New version
 ------------------------:|:------------------
 ![](https://github.com/PierreSachot/Internship-Reports/blob/master/images/Screenshot_1.png?raw=true) | ![](https://github.com/PierreSachot/Internship-Reports/blob/master/images/Screenshot_2.png?raw=true)
 
-![before](http://image.prntscr.com/image/e5ef587d4fb3417aa9594fdb8cb9fb0b.png)
-
-And this is the new version: <br>
-![after](http://image.prntscr.com/image/b9f55e3f3ba94e499dcc3421b594e12b.png)
-
-___
-This is the previous version of the Debug preferences:
-
-![before](http://image.prntscr.com/image/793a6e8862c6488b897867b4ab30b9f8.png)
-
-And this is the new version:<br>
-![after](http://image.prntscr.com/image/f407a70baf13440c8027ba6392ede376.png)
-
-
-
 ## How to resolve the problem ?
-
 ### CSourceNotFoundEditor:
+
+CSourceNotFoundEditor is the class called by `openEditor()` function, Yannick added a link to the debug preferences page inside it:
+
+- The first thing to do was to create the "Preferences..." button and a text, Yannick did it in the `createButtons()` function.
+- Next, we made it possible for the listener to open the Preferences on the correct page - in our case, the Debug page - using this code:
+
+`PreferencesUtil.createPreferenceDialogOn(parent.getShell(), "org.eclipse.cdt.debug.ui.CDebugPreferencePage", null, null).open();`
+
+"org.eclipse.cdt.debug.ui.CDebugPreferencePage" is the class name we want to load in the debug preferences.
+
+
 This is the class which is called by openEditor, it is CSourceNotFoundEditor, in this class Yannick added a link to the preferences page to change the display choices. 
 - The first thing to do was to create the "Preferences..." button and a text, Yannick did it in the `createButtons()` function.
 - Second thing was to create the listener which will open the Preferences on the right page, this means the Debug page in our case. So to open 
