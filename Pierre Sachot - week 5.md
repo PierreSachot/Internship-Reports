@@ -9,6 +9,8 @@ My idea was to add a Regex completion proposal in Eclipse editor. In this docume
 
 ## My ideas:
 
+ 1- Firstly, I wanted to 
+
 ## Create your Eclipse plug-in:
 
 
