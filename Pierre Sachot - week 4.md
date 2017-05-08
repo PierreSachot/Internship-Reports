@@ -21,13 +21,13 @@ CSourceNotFoundEditor Dialog:
 
 Previous version	|	New version
 ------------------------:|:------------------
-![](https://github.com/PierreSachot/Internship-Reports/blob/master/images/Screenshot_1.png?raw=true) | ![](https://github.com/PierreSachot/Internship-Reports/blob/master/images/Screenshot_2.png?raw=true)
+![](https://github.com/PierreSachot/Internship-Reports/blob/master/images/week%204/Screenshot_1.png?raw=true) | ![](https://github.com/PierreSachot/Internship-Reports/blob/master/images/week%204/Screenshot_2.png?raw=true)
 
 CSourceNotFoundEditor Preferences:
 
 Previous version	|	New version
 ------------------------:|:------------------
-![](https://github.com/PierreSachot/Internship-Reports/blob/master/images/Screenshot_3.png?raw=true) | ![](https://github.com/PierreSachot/Internship-Reports/blob/master/images/Screenshot_4.png?raw=true)
+![](https://github.com/PierreSachot/Internship-Reports/blob/master/images/week%204/Screenshot_3.png?raw=true) | ![](https://github.com/PierreSachot/Internship-Reports/blob/master/images/week%204/Screenshot_4.png?raw=true)
 
 ## How to resolve the problem ?
 
@@ -48,7 +48,7 @@ PreferencesUtil.createPreferenceDialogOn(parent.getShell(), "org.eclipse.cdt.deb
 
 ### CDebugPreferencePage:
 
-This class is the one which contains the debug preferences page. I set about modifying it so that the CSourceNot Found preferences could be re-set and access to them enabled. This included the option to modify PreferenceMessages.properties which contains the String values of the buttons, and PreferenceMessage.java to declare them and use them. The last thing we did was to create a global value in CCorePreferenceConstants to get and set the display preferences. This we did in 4 stages :
+This class is the one which contains the debug preferences page. I set about modifying it so that the CSourceNot Found preferences could be re-set and access to them enabled. This included the option to modify PreferenceMessages.properties which contains the String values of the buttons, and PreferenceMessage.java to declare them and use them. The last thing we did was to create a global value in CCorePreferenceConstants to get and set the display preferences. This we did in 4 stages:
 
 - Firstly we created a group for the radio buttons. This is in the function createContents().
 
@@ -59,14 +59,14 @@ This class is the one which contains the debug preferences page. I set about mod
 DefaultScope.INSTANCE.getNode(CDebugCorePlugin.PLUGIN_ID).get(CCorePreferenceConstants.YOUR_PREFERENCE_NAME, null);
 
 ```
-And to store it :
+And to store it:
 
 ```Java
 
 InstanceScope.INSTANCE.getNode(CCorePlugin.PLUGIN_ID).put(CCorePreferenceConstants.YOUR_PREFERENCE_NAME, "Your text");
 
 ```
-Here we created a preference named : SHOW_SOURCE_NOT_FOUND_EDITOR which can take 3 values, defined at the begining of the CDebugPreferencePage class :
+Here we created a preference named: SHOW_SOURCE_NOT_FOUND_EDITOR which can take 3 values, defined at the begining of the CDebugPreferencePage class:
 
   ```Java
   /**
@@ -97,13 +97,13 @@ public static final String SHOW_SOURCE_NOT_FOUND_EDITOR_NEVER = "never"; //$NON-
 
  - Thirdly, we need to find where to set the values and where to get them. So, to set the values on your components, it's made in the `setValues()` function.To store a value, you will need to add your code in `storeValues()`, like it's name suggests it will store the value inside of the glocal preferences variable.
 
- - The fourth and final stage is really important, so **don't forget it!** : You need to put the default value of the preference you want to add in setDefaultValues() to allows access to the original value of the preferences.
+ - The fourth and final stage is really important, so **don't forget it!**: You need to put the default value of the preference you want to add in setDefaultValues() to allows access to the original value of the preferences.
  
 ### DsfSourceDisplayAdapter:
 
 This is the class which calls CSourceNotFoundEditor, so here in the function openEditor, we needed to check the preferences options in order to know if you can display CSourceFoundEditor. These checks need to be carried out in openEditor() function because this is the function which opens the CSourceNotFoundEditor. To do that, we created two cases the first in which the user wants to display the Editor all the time, and the second for when the user only wants to display it if the source file is not found. The las case is an exclusion of the all time, so you don't need to check it because nothing is done in this case.
-To do that, we did it like that :  
-![how to display CSourceNotFoundEditor](https://github.com/PierreSachot/Internship-Reports/blob/master/images/Screenshot_5.png?raw=true)
+To do that, we did it like that:  
+![how to display CSourceNotFoundEditor](https://github.com/PierreSachot/Internship-Reports/blob/master/images/week%204/Screenshot_5.png?raw=true)
 
 ### Conclusion
 Now users have the capacity to disable CSourceNotFoundEditor window altogether or to choose for themselves when to display it. Thus saving time and improving the user experience of the Eclipse debugger. This is a great example of how working on an open source project can really benefit a whole community of users. But, a word of warning, CDT project isn't the easiest program to develop or the easiest to master, you need to understand other user's code and if you change it you need to retain its original logic and style.
