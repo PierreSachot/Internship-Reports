@@ -227,11 +227,14 @@ For the `categoryId` the identifier come from the MANIFEST:
 
 Now you can start your plug-in, to do that, just do:
 
-![plugin.xml](https://github.com/PierreSachot/Internship-Reports/blob/master/images/week%205/Screenshot_19.png?raw=true)
+![plugin.xml](https://github.com/PierreSachot/Internship-Reports/blob/master/images/week%205/Screenshot_20.png?raw=true)
 
 Then when you press "CTRL+SPACE", this completion proposal should show:
 
-![plugin.xml](https://github.com/PierreSachot/Internship-Reports/blob/master/images/week%205/Screenshot_20.png?raw=true)
+![plugin.xml](https://github.com/PierreSachot/Internship-Reports/blob/master/images/week%205/Screenshot_19.png?raw=true)
 
+So what's missing? What need I do now?
 
 ## What's missing?
+
+Now I need to add my plugin inside Eclipse JDT structure to have it directly without needed to download my plugin.
