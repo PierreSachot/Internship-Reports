@@ -59,9 +59,9 @@ Your plugin is now created, but how to link it to Eclipse? This is possible with
 
 In our case, a hook is something that allows the developper to create an external module that Eclipse can load. It's like a door which allow the developper to create a new feature and say to the program "Load this code".
 
-The problem is, you don't have only one Hook inside of Eclipse, but a lot, you can see all hooks by following that :
+The problem is, you don't have only one Hook inside of Eclipse, but a lot, you can see all hooks by clicking on the link bellow :
 
-![Eclipse Hooks](https://github.com/PierreSachot/Internship-Reports/blob/master/images/week%205/Screenshot_1.png?raw=true)
+[Eclipse Hooks](https://help.eclipse.org/neon/index.jsp?topic=%2Forg.eclipse.platform.doc.isv%2Freference%2Fextension-points%2Findex.html&cp=2_1_1)
 
 Now you need to find the right hook, for that I only watch inside others completion proposals plugins on which hook they were attaching to.
 In my case, this is the : `javaCompletionProposalComputer`.
