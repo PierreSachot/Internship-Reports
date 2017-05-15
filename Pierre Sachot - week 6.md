@@ -5,7 +5,7 @@
 This week, I was back on January project, more specifically on Junit Tests. We managed to test two function of the Maths.java which are: arctan2() function and abs() to calculate the absolute value of a Dataset.
 I worked more on the second function, those tests were really similar so we decided to create a ParameterizeTest class, this are tests that can be apply on a same code, with only variable changing, it can be values to test a function with a lot of values and see which one is failling, or like in our case on some class types.
 
-## Previous tests:
+## Tests before using Parameterized Tests:
 
 Our tests where really similar:
 
@@ -94,6 +94,8 @@ public void testAbsbyteInput() {
     ....
 }
 ```
+
+## Tests using Parameterized Tests:
 
 Now you can write a parameterize class test to reduce your code size and simplify your tests:
 
