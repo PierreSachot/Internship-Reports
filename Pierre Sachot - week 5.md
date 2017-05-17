@@ -54,10 +54,10 @@ Your plugin is now created, but how to link it to Eclipse? This is possible with
 
 ## What's a Hook:
 
-```
-In computer programming, the term hooking covers a range of techniques used to alter or augment the behavior of an operating system, of applications, or of other software components by intercepting function calls or messages or events passed between software components. Code that handles such intercepted function calls, events or messages is called a hook.
-```
-             From Wikipedia.
+
+	In computer programming, the term hooking covers a range of techniques used to alter or augment the behavior of an operating system, of applications, or of other software components by intercepting function calls or messages or events passed between software components. Code that handles such intercepted function calls, events or messages is called a hook.
+
+   From Wikipedia.
 
 In our case, a hook is something that allows the developper to create an external module that Eclipse can load. It's like a door which allow the developper to create a new feature and say to the program "Load this code".
 
