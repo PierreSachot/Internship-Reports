@@ -1,11 +1,11 @@
 # Pierre Sachot internship report week 4
 
-This week I worked with Yannick on fixing the CDT CSourceNotFoundEditor problem - the unwanted error message that Eclipse CDT shows when users are running the debugger and jumping into a function which was in an other project file.
+This week I worked with Yannick on fixing the CDT CSourceNotFoundEditor problem - the unwanted error message that Eclipse CDT shows when users are running the debugger and jumping into a function which is in another project file.
 
 ## Context:
-When Eclipse CDT users user were running the debugger on the C Project, a window was opening on screen. This window was both alarming in appearance and obtrusive. 
-In addition, the message itself was unclear. For example, it could display "No source available for 0x02547", which is irelevent to the user because he/she does not have an access to this memory address. Several users had complained about it and expressed a desire to disable the window (see: [stack overflow: "Eclipse often opens editors for hex numbers (addresses?) then fails to load anything"](http://stackoverflow.com/questions/43361654/eclipse-often-opens-editors-for-hex-numbers-addresses-then-fails-to-load-anyt/43412237)).
-In this post, I will show you how we replaced CSourceUserNot FoundEditor with a better user experience display.
+When Eclipse CDT users were running the debugger on the C Project, a window was opening on screen. This window was both alarming in appearance and obtrusive. 
+In addition, the message itself was unclear. For example, it could display "No source available for 0x02547", which is irrelevent to the user because he/she does not have an access to this memory address. Several users had complained about it and expressed a desire to disable the window (see: [stack overflow: "Eclipse often opens editors for hex numbers (addresses?) then fails to load anything"](http://stackoverflow.com/questions/43361654/eclipse-often-opens-editors-for-hex-numbers-addresses-then-fails-to-load-anyt/43412237)).
+In this post I will show you how we replaced CSourceUserNot FoundEditor with a better user experience display.
 
 ## Problem description:
 
@@ -34,11 +34,11 @@ Previous version	|	New version
 
 ### CSourceNotFoundEditor:
 
-CSourceNotFoundEditor is the class called by `openEditor()` function, Yannick added a link to the debug preferences page inside it:
+CSourceNotFoundEditor is the class called by the `openEditor()` function, Yannick added a link to the debug preferences page inside it:
 
-- The first thing to do was to create the "Preferences..." button and a text, Yannick did it in the `createButtons()` function.
+- The first thing to do was to create the "Preferences..." button and a text to go with it. Yannick did this in the `createButtons()` function.
 
-- Next, we made it possible for the listener to open the Preferences on the correct page - in our case, the Debug page - using this code:
+- Next, we made it possible for the user to open the Preferences on the correct page - in our case, the Debug page - using this code:
 ```Java
 
 PreferencesUtil.createPreferenceDialogOn(parent.getShell(), "org.eclipse.cdt.debug.ui.CDebugPreferencePage", null, null).open();
@@ -51,9 +51,9 @@ PreferencesUtil.createPreferenceDialogOn(parent.getShell(), "org.eclipse.cdt.deb
 
 This class is the one which contains the debug preferences page. I set about modifying it so that the CSourceNot Found preferences could be re-set and access to them enabled. This included the option to modify PreferenceMessages.properties which contains the String values of the buttons, and PreferenceMessage.java to declare them and use them. The last thing we did was to create a global value in CCorePreferenceConstants to get and set the display preferences. This we did in 4 stages:
 
-- Firstly we created a group for the radio buttons. This is in the function createContents().
+- First we created a group for the radio buttons. This is in the function createContents().
 
-- Secondly we created the variable intended to store the preference value. This value is a String store in the CCorePreferenceConstants class. To get a preference String value, you need to use:
+- Second we created the variable intended to store the preference value. This value is a String store in the CCorePreferenceConstants class. To get a preference String value, you need to use:
 
 ```Java
 
@@ -96,14 +96,19 @@ public static final String SHOW_SOURCE_NOT_FOUND_EDITOR_NEVER = "never"; //$NON-
 
 ```
 
- - Thirdly, we need to find where to set the values and where to get them. So, to set the values on your components, it's made in the `setValues()` function.To store a value, you will need to add your code in `storeValues()`, like it's name suggests it will store the value inside of the glocal preferences variable.
+ - Third, we needed to find where to set the values and where to get them. So, to set the values on your components, use the `setValues()` function.To store a value, you will need to add your code in `storeValues()`, like it's name suggests it will store the value inside of the global preferences variable.
 
- - The fourth and final stage is really important, so **don't forget it!**: You need to put the default value of the preference you want to add in setDefaultValues() to allows access to the original value of the preferences.
+ - The fourth and final stage is really important: - You need to put the default value of the preference you want to add in setDefaultValues() to allows access to the original value of the preferences.
  
 ### DsfSourceDisplayAdapter:
 
-This is the class which calls CSourceNotFoundEditor, so here in the function openEditor, we needed to check the preferences options in order to know if you can display CSourceFoundEditor. These checks need to be carried out in openEditor() function because this is the function which opens the CSourceNotFoundEditor. To do that, we created two cases the first in which the user wants to display the Editor all the time, and the second for when the user only wants to display it if the source file is not found. The las case is an exclusion of the all time, so you don't need to check it because nothing is done in this case.
-To do that, we did it like that:  
+This is the class which calls CSourceNotFoundEditor, so here in the function openEditor, we needed to check the preferences options in order to know if it was possible to display CSourceFoundEditor. These checks need to be carried out in openEditor() function because this is the function which opens the CSourceNotFoundEditor. To do that, we created two cases:
+	
+   - First case in which the user wants to display the Editor all the time
+   - Second for when the user only wants to display it if the source file is not found 
+   - The last case is an exclusion of the "all_time", so you don't need to check it because nothing is done in this case.
+   
+To do that, we did it like this:  
 ![how to display CSourceNotFoundEditor](https://github.com/PierreSachot/Internship-Reports/blob/master/images/week%204/Screenshot_5.png?raw=true)
 
 ### Conclusion
