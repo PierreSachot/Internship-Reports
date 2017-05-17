@@ -1,20 +1,21 @@
 # Pierre Sachot internship report week 4
 
-This week I worked with Yannick on fixing the CDT CSourceNotFoundEditor problem.
+This week I worked with Yannick on fixing the CDT CSourceNotFoundEditor problem which was our unwanted error message that Eclipse CDT does not stop to show when users were using debugger and jump into a function which was in an other project file.
 
 ## Context:
-When the user was stepping into functions by running the debugger on the C Project, a window was opening on screen. This window was both alarming in appearance and obtrusive. 
-In addition, the message itself was unclear. For example, it could display "No source available for 0x02547", this information isn't really relevent to the user because he doesn't have an access to this memory address. Several users had complain about it and expressed a desire to disable the window (see: [stack overflow: "Eclipse often opens editors for hex numbers (addresses?) then fails to load anything"](http://stackoverflow.com/questions/43361654/eclipse-often-opens-editors-for-hex-numbers-addresses-then-fails-to-load-anyt/43412237)).
-In this post, we will show you how we replaced CSourceUserNot FoundEditor with a better user experience display.
+When Eclipse CDT users user were running the debugger on the C Project, a window was opening on screen. This window was both alarming in appearance and obtrusive. 
+In addition, the message itself was unclear. For example, it could display "No source available for 0x02547", which is irelevent to the user because he/she does not have an access to this memory address. Several users had complained about it and expressed a desire to disable the window (see: [stack overflow: "Eclipse often opens editors for hex numbers (addresses?) then fails to load anything"](http://stackoverflow.com/questions/43361654/eclipse-often-opens-editors-for-hex-numbers-addresses-then-fails-to-load-anyt/43412237)).
+In this post, I will show you how we replaced CSourceUserNot FoundEditor with a better user experience display.
 
 ## Problem description:
 
 1- The problem we faced was that CSourceNotFoundEditor displayed on several occasions. For example:
-	When the source file was not found
-	When the memory address was known but not the function name
-	When the function name was known
+	
+	- When the source file was not found
+	- When the memory address was known but not the function name
+	- When the function name was known
 		
-2- We wanted to tackle that red link ! Red lettering is synonymous with big problems ! And yet the error message was merely informing the user that the source could not be found we felt a less alarmist style of text would be more appropriate..
+2- We also wanted to tackle that red link ! Red lettering is synonymous with big problems - yet the error message was merely informing the user that the source could not be found, so we felt a less alarmist style of text would be more appropriate..
 ___
 
 CSourceNotFoundEditor Dialog:
