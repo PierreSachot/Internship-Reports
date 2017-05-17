@@ -1,6 +1,6 @@
 # Pierre Sachot internship report week 4
 
-This week I worked with Yannick on fixing the CDT CSourceNotFoundEditor problem which was our unwanted error message that Eclipse CDT does not stop to show when users were using debugger and jump into a function which was in an other project file.
+This week I worked with Yannick on fixing the CDT CSourceNotFoundEditor problem - the unwanted error message that Eclipse CDT shows when users are running the debugger and jumping into a function which was in an other project file.
 
 ## Context:
 When Eclipse CDT users user were running the debugger on the C Project, a window was opening on screen. This window was both alarming in appearance and obtrusive. 
@@ -11,11 +11,11 @@ In this post, I will show you how we replaced CSourceUserNot FoundEditor with a 
 
 1- The problem we faced was that CSourceNotFoundEditor displayed on several occasions. For example:
 	
-	- When the source file was not found
-	- When the memory address was known but not the function name
-	- When the function name was known
+- When the source file was not found
+- When the memory address was known but not the function name
+- When the function name was known
 		
-2- We also wanted to tackle that red link ! Red lettering is synonymous with big problems - yet the error message was merely informing the user that the source could not be found, so we felt a less alarmist style of text would be more appropriate..
+2- We also wanted to tackle that red link! Red lettering is synonymous with big problems - yet the error message was merely informing the user that the source could not be found, so we felt a less alarmist style of text would be more appropriate.
 ___
 
 CSourceNotFoundEditor Dialog:
