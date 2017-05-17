@@ -1,11 +1,11 @@
 # Pierre Sachot internship report week 4
 
-This week I worked with Yannick on fixing the CDT CSourceNotFoundEditor problem - the unwanted error message that Eclipse CDT shows when users are running the debugger and jumping into a function which is in another project file.
+This week I worked with Yannick on fixing the CDT CSourceNotFoundEditor problem - the over-zealous error message that Eclipse CDT shows when users are running the debugger and jumping into a function which is in another project file.
 
 ## Context:
 When Eclipse CDT users were running the debugger on the C Project, a window was opening on screen. This window was both alarming in appearance and obtrusive. 
-In addition, the message itself was unclear. For example, it could display "No source available for 0x02547", which is irrelevent to the user because he/she does not have an access to this memory address. Several users had complained about it and expressed a desire to disable the window (see: [stack overflow: "Eclipse often opens editors for hex numbers (addresses?) then fails to load anything"](http://stackoverflow.com/questions/43361654/eclipse-often-opens-editors-for-hex-numbers-addresses-then-fails-to-load-anyt/43412237)).
-In this post I will show you how we replaced CSourceUserNot FoundEditor with a better user experience display.
+In addition, the message itself was unclear. For example, it could display "No source available for 0x02547", which is irrelevant to the user because he/she does not have an access to this memory address. Several users had complained about it and expressed a desire to disable the window (see: [stack overflow: "Eclipse often opens editors for hex numbers (addresses?) then fails to load anything"](http://stackoverflow.com/questions/43361654/eclipse-often-opens-editors-for-hex-numbers-addresses-then-fails-to-load-anyt/43412237)).
+In this post I will show you how we replaced CSourceUserNotFoundEditor with a better user experience display.
 
 ## Problem description:
 
@@ -49,7 +49,7 @@ PreferencesUtil.createPreferenceDialogOn(parent.getShell(), "org.eclipse.cdt.deb
 
 ### CDebugPreferencePage:
 
-This class is the one which contains the debug preferences page. I set about modifying it so that the CSourceNot Found preferences could be re-set and access to them enabled. This included the option to modify PreferenceMessages.properties which contains the String values of the buttons, and PreferenceMessage.java to declare them and use them. The last thing we did was to create a global value in CCorePreferenceConstants to get and set the display preferences. This we did in 4 stages:
+This class is the one which contains the debug preferences page. I set about modifying it so that the CSourceNotFoundEditor preferences could be re-set and access to them enabled. This included the option to modify PreferenceMessages.properties which contains the String values of the buttons, and PreferenceMessage.java to declare them and use them. The last thing we did was to create a global value in CCorePreferenceConstants to get and set the display preferences. This we did in 4 stages:
 
 - First we created a group for the radio buttons. This is in the function createContents().
 
@@ -96,13 +96,13 @@ public static final String SHOW_SOURCE_NOT_FOUND_EDITOR_NEVER = "never"; //$NON-
 
 ```
 
- - Third, we needed to find where to set the values and where to get them. So, to set the values on your components, use the `setValues()` function.To store a value, you will need to add your code in `storeValues()`, like it's name suggests it will store the value inside of the global preferences variable.
+ - Third, we needed to find where to set the values and where to get them. So, to set the values on your components, use the `setValues()` function. To store a value, you will need to add your code in `storeValues()`. As it's name suggests it will store the value inside of the global preferences variable.
 
  - The fourth and final stage is really important: - You need to put the default value of the preference you want to add in setDefaultValues() to allows access to the original value of the preferences.
  
 ### DsfSourceDisplayAdapter:
 
-This is the class which calls CSourceNotFoundEditor, so here in the function openEditor, we needed to check the preferences options in order to know if it was possible to display CSourceFoundEditor. These checks need to be carried out in openEditor() function because this is the function which opens the CSourceNotFoundEditor. To do that, we created two cases:
+This is the class which calls CSourceNotFoundEditor, so here in the function openEditor, we needed to check the preferences options in order to know if it was possible to display CSourceFoundEditor. These checks need to be carried out in openEditor() function because this is the function which opens the CSourceNotFoundEditor. To do that, we created two case scenarios:
 	
    - First case in which the user wants to display the Editor all the time
    - Second for when the user only wants to display it if the source file is not found 
@@ -112,6 +112,6 @@ To do that, we did it like this:
 ![how to display CSourceNotFoundEditor](https://github.com/PierreSachot/Internship-Reports/blob/master/images/week%204/Screenshot_5.png?raw=true)
 
 ### Conclusion
-Now users have the capacity to disable CSourceNotFoundEditor window altogether or to choose for themselves when to display it. Thus saving time and improving the user experience of the Eclipse debugger. This is a great example of how working on an open source project can really benefit a whole community of users. But, a word of warning, CDT project isn't the easiest program to develop or the easiest to master, you need to understand other user's code and if you change it you need to retain its original logic and style.
+Now users have the capacity to disable CSourceNotFoundEditor window altogether or to choose for themselves when to display it. Thus saving time and improving the user experience of the Eclipse debugger. This is a great example of how working on an Open-source project can really benefit a whole community of users. But, a word of warning, CDT project isn't the easiest program to develop or the easiest to master, you need to understand other users' code and if you change it you need to retain its original logic and style.
 Fiddly perhaps but well worth it! The user community will appreciate your efforts and the flow of coding future work will be smoother and more efficient. A better user experience for everyone.
 
