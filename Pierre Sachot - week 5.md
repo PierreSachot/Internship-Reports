@@ -81,9 +81,9 @@ You need to add some dependencies :
   - Click on "Add.."
   - Add those dependencies:
   
-    ` org.eclipse.jface.text
+    ``` org.eclipse.jface.text
       org.eclipse.swt
-      org.eclipse.jface`
+      org.eclipse.jface```
 
  If you don't find some dependencies, add them directly inside the MANIFEST:
 
@@ -107,7 +107,6 @@ You need to add some dependencies :
 
 Now you have your plugin base, but you don't know how to load the Regex proposals and first of all, find where they are.
 
-118
 ## Finding the Regex proposals:
 
 I knew that the Regex proposals already exists inside Eclipse because you can enable them when you do a CTRL+F.
