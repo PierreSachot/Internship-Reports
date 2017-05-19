@@ -189,6 +189,7 @@ Here you can see all the EASE Modules:
 ![image ease modules](https://github.com/PierreSachot/Internship-Reports/blob/master/images/week%207/Screenshot_1.png)
 
 A EASE Module is a function that you can call in your favorite scripting language which will execute a Java code for exemple by using Py4j in our case. Here we want to simplify our previous code, by allowing the user to:
+
 	- Create directly a Java project with JVM dependencies in one line
 	- Create src folder easily or directly if he create a Java project
 	- Download file and put them inside of his project
