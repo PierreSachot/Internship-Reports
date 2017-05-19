@@ -196,19 +196,19 @@ A EASE Module is a function that you can call in your favorite scripting languag
 So to do that, the first thing to do is to create a plug-in project.
 Then, add those dependencies:
 
-[image dependencies](https://github.com/PierreSachot/Internship-Reports/blob/master/images/week%207/Screenshot_2.png)
+![image dependencies](https://github.com/PierreSachot/Internship-Reports/blob/master/images/week%207/Screenshot_2.png)
 
 After that, the thing to do is to create an extension to ease modules, create a new module and add dependencies to it:
 
-[Ease module](https://github.com/PierreSachot/Internship-Reports/blob/master/images/week%207/Screenshot_2.png)
+![Ease module](https://github.com/PierreSachot/Internship-Reports/blob/master/images/week%207/Screenshot_2.png)
 
-[new module](https://github.com/PierreSachot/Internship-Reports/blob/master/images/week%207/Screenshot_3.png)
+![new module](https://github.com/PierreSachot/Internship-Reports/blob/master/images/week%207/Screenshot_3.png)
 
-[module parameters](https://github.com/PierreSachot/Internship-Reports/blob/master/images/week%207/Screenshot_4.png) 
+![module parameters](https://github.com/PierreSachot/Internship-Reports/blob/master/images/week%207/Screenshot_4.png) 
 
-[new dependencies](https://github.com/PierreSachot/Internship-Reports/blob/master/images/week%207/Screenshot_5.png)
+![new dependencies](https://github.com/PierreSachot/Internship-Reports/blob/master/images/week%207/Screenshot_5.png)
 
-[dependencies parameters](https://github.com/PierreSachot/Internship-Reports/blob/master/images/week%207/Screenshot_6.png)
+![dependencies parameters](https://github.com/PierreSachot/Internship-Reports/blob/master/images/week%207/Screenshot_6.png)
 
 When it's done you can begin to write your code inside your class - Here :JPCreator
 We did an other class to save project entries informations:
@@ -354,7 +354,7 @@ public class JPCreator {
 
 Now if you execute this plug-in by launching it as Eclipse application, in the Scripting view, you will have those new functions:
 
-[New module](https://github.com/PierreSachot/Internship-Reports/blob/master/images/week%207/Screenshot_7.png)
+![New module](https://github.com/PierreSachot/Internship-Reports/blob/master/images/week%207/Screenshot_7.png)
 
 And this is our new script:
 
