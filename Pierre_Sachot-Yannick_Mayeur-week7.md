@@ -33,7 +33,7 @@ During this week, we worked for the most part on python developping with EASE. T
 So the first things we did was to create a script which create a dialog askip you your name. After that, we worked on a really interresting function, EASE allows to generate a new Eclipse feature, like in the pop-up menu. Those functions works pretty well, without creating any plugins.
 One example of code:
 
-The code bellow allows the user to select text and replace inside of the selection all the private by public just by doing a right click on it and select "Replace private with public".
+The code below allows the user to select text and replace inside of the selection all the private by public just by doing a right click on it and select "Replace private with public".
 
 
 ```Python
@@ -178,7 +178,7 @@ create_java_class(javaPackage, className)
 
 ```
 
-Here you can see that the EASE Method is nice but really complicated because there is no autocompletion, create your own code link to Eclipse is really complicated because of that... That is why you can create a module to generate a new function callable in python, this will be explain in the part bellow.
+Here you can see that the EASE Method is nice but really complicated because there is no autocompletion, create your own code link to Eclipse is really complicated because of that... That is why you can create a module to generate a new function callable in python, this will be explain in the part below.
 
 ## III- How to create EASE Modules?
 
