@@ -61,15 +61,16 @@ Create this function in Java would be really complicated to write and bigger tha
 ### Our project:
 
 After mastering EASE, we wanted to create our stuff, the idea was to create easily with a script a new project, and put a January example inside it. We choose to put Dataset creation example. Here is the steps we needed to do:
-	1- Create a project - already available in EASE Modules
-	2- Change this project in a Java Project - not available in EASE Modules
-	3- Add JVM dependencies - not available in EASE Modules
-	4- Create a SRC folder - not available in EASE Modules
-	5- Download January and its dependencies - not available in EASE Modules
-	6- Add those libraries to our project - not available in EASE Modules
-	7- Create a new file - 	already available in EASE Modules
-	8- Change this file in a Java source file - not available in EASE Modules
-	9- Put our code inside this file - already available in EASE Modules
+
+	1. Create a project - already available in EASE Modules
+	2. Change this project in a Java Project - not available in EASE Modules
+	3. Add JVM dependencies - not available in EASE Modules
+	4. Create a SRC folder - not available in EASE Modules
+	5. Download January and its dependencies - not available in EASE Modules
+	6. Add those libraries to our project - not available in EASE Modules
+	7. Create a new file - 	already available in EASE Modules
+	8. Change this file in a Java source file - not available in EASE Modules
+	9. Put our code inside this file - already available in EASE Modules
 
 So, it's a lot of steps, with a lot of function not created for the moment inside EASE... This will create a big python code, but we will reduce it in the Third part of this week report.
 Here is our code:
