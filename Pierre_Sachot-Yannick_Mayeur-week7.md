@@ -30,7 +30,7 @@ actually getting work done.
 
 ### Our start:
 During this week, we worked for the most part on python developping with EASE. To start, we follow Kichwa Coders's tutorial ([here](https://github.com/jonahkichwacoders/EASE-Python-Examples) see EASE.htm) which explain EASE bases, on how to develop and what is possible with EASE.
-So the first things we did was to create a script which create a dialog askip you your name. After that, we worked on a really interresting function, EASE allows to generate a new Eclipse feature, like in the pop-up menu. Those functions works pretty well, without creating any plugins.
+So the first things we did was to create a script which create a dialog asking you your name. After that, we worked on a really interresting function, EASE allows to generate a new Eclipse feature, like in the pop-up menu. Those functions works pretty well, without creating any plugins.
 One example of code:
 
 The code below allows the user to select text and replace inside of the selection all the private by public just by doing a right click on it and select "Replace private with public".
@@ -181,6 +181,225 @@ create_java_class(javaPackage, className)
 Here you can see that the EASE Method is nice but really complicated because there is no autocompletion, create your own code link to Eclipse is really complicated because of that... That is why you can create a module to generate a new function callable in python, this will be explain in the part below.
 
 ## III- How to create EASE Modules?
+
+### EASE Module? What is it?
+
+Here you can see all the EASE Modules:
+[image ease modules]()
+
+A EASE Module is a function that you can call in your favorite scripting language which will execute a Java code for exemple by using Py4j in our case. Here we want to simplify our previous code, by allowing the user to:
+	- Create directly a Java project with JVM dependencies in one line
+	- Create src folder easily or directly if he create a Java project
+	- Download file and put them inside of his project
+	- Implements dependencies
+
+So to do that, the first thing to do is to create a plug-in project.
+Then, add those dependencies:
+
+[image dependencies]()
+
+After that, the thing to do is to create an extension to ease modules, create a new module and add dependencies to it:
+
+[Ease module]()
+
+[new module]()
+
+[module parameters]() 
+
+[new dependencies]()
+
+[dependencies parameters]()
+
+When it's done you can begin to write your code inside your class - Here :JPCreator
+We did an other class to save project entries informations:
+
+Entries.java
+```Java
+import java.util.HashSet;
+import java.util.Set;
+
+import org.eclipse.core.resources.IProject;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.jdt.core.IClasspathEntry;
+import org.eclipse.jdt.core.IJavaProject;
+
+public class Entries {
+
+	private Set<IClasspathEntry> entries;
+	private IProject projet;
+	private IJavaProject javaProject;
+	private IProgressMonitor progressMonitor;
+	
+	 public Entries(IProject project)
+	 {
+		 this.entries = new HashSet<IClasspathEntry>();
+		 this.projet = project;
+		 this.javaProject = null;
+		 this.progressMonitor = new NullProgressMonitor();
+	 }
+	
+	public Set<IClasspathEntry> getEntries() {
+		return entries;
+	}
+
+	public void setEntries(Set<IClasspathEntry> entries) {
+		this.entries = entries;
+	}
+
+	public IProject getProject() {
+		return projet;
+	}
+
+	public void setProject(IProject project) {
+		this.projet = project;
+	}
+
+
+	public IJavaProject getJavaProject() {
+		return javaProject;
+	}
+
+	public void setJavaProject(IJavaProject javaProject) {
+		this.javaProject = javaProject;
+	}
+
+	public IProgressMonitor getProgressMonitor() {
+		return progressMonitor;
+	}
+
+	public void setProgressMonitor(IProgressMonitor progressMonitor) {
+		this.progressMonitor = progressMonitor;
+	}
+}
+
+```
+
+And our JPCreator class:
+```Java
+import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IProjectDescription;
+import org.eclipse.core.resources.IWorkspaceRoot;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.jdt.core.IClasspathEntry;
+import org.eclipse.jdt.core.JavaCore;
+import org.eclipse.jdt.core.JavaModelException;
+import org.eclipse.jdt.launching.JavaRuntime;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.net.URL;
+import java.nio.channels.Channels;
+import java.nio.channels.ReadableByteChannel;
+
+public class JPCreator {
+
+	public void createJavaSrcFolder(Entries entries) {
+		new File(entries.getProject().getLocation().toString() + "/src").mkdirs();
+		entries.getEntries().add(JavaCore.newSourceEntry(entries.getProject().getFullPath().append("src")));
+	}
+
+	public Entries createJavaProject(String project_name) throws CoreException {
+		IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
+		IProject project = root.getProject(project_name);
+		Entries entries = new Entries(project);
+		IProgressMonitor progressMonitor = entries.getProgressMonitor();
+		project.create(progressMonitor);
+		project.open(progressMonitor);
+
+		// Creating JavaProject
+		IProjectDescription description = project.getDescription();
+		String[] natures = description.getNatureIds();
+		String[] newNatures = new String[natures.length + 1];
+		System.arraycopy(natures, 0, newNatures, 0, natures.length);
+		newNatures[natures.length] = JavaCore.NATURE_ID;
+		description.setNatureIds(newNatures);
+		project.setDescription(description, progressMonitor);
+		entries.setJavaProject(JavaCore.create(project));
+
+		// Adding dependenciess
+		entries.getEntries().add(JavaRuntime.getDefaultJREContainerEntry());
+		entries.getJavaProject().setRawClasspath(
+				entries.getEntries().toArray(new IClasspathEntry[entries.getEntries().size()]), progressMonitor);
+		entries.getProject().refreshLocal(0, entries.getProgressMonitor());
+		createJavaSrcFolder(entries);
+		return entries;
+	}
+
+	public void createJavaDependencies(Entries entries, String libraryName) throws JavaModelException {
+		entries.getEntries()
+				.add(JavaCore.newLibraryEntry(entries.getProject().getFullPath().append(libraryName), null, null));
+		entries.getJavaProject().setRawClasspath(
+				entries.getEntries().toArray(new IClasspathEntry[entries.getEntries().size()]),
+				entries.getProgressMonitor());
+
+	}
+
+	public String downloadFile(String url, Entries entries, String nom) throws IOException {
+		FileOutputStream fos = null;
+		URL website = new URL(url);
+		ReadableByteChannel rbc = Channels.newChannel(website.openStream());
+		fos = new FileOutputStream(entries.getProject().getLocation().toString() + "/" + nom);
+		fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
+		System.out.println("Download complete!");
+		fos.close();
+		return nom;
+	}
+
+}
+```
+
+Now if you execute this plug-in by launching it as Eclipse application, in the Scripting view, you will have those new functions:
+
+[New module]()
+
+And this is our new script:
+
+```Python
+loadModule('/EASE-Project-Creator.JPCreator');
+loadModule('/System/Resources');
+
+
+className = "Example"
+classCode = '''
+import org.eclipse.january.dataset.DTypeUtils;
+import org.eclipse.january.dataset.Dataset;
+import org.eclipse.january.dataset.DatasetFactory;
+import org.eclipse.january.dataset.DoubleDataset;
+import org.eclipse.january.dataset.Random;
+
+
+public class {className} {{
+
+    public static void main(String[] args)
+    {{
+        our code
+    }}
+
+}}
+'''.format(className=className)
+
+
+
+entries = createJavaProject("JanuaryProject")
+refreshResource(entries.getProject())
+januaryFile = createFile("workspace://JanuaryProject/src/"+className+".java");
+writeFile(januaryFile, classCode)
+
+dico_addresses = {"january.jar":"https://github.com/PierreSachot/JanuaryGameOfLife/raw/master/january.jar", "commons1.jar" : "https://search.maven.org/remotecontent?filepath=commons-lang/commons-lang/2.6/commons-lang-2.6.jar",
+                  "slf4j.jar" : "https://search.maven.org/remotecontent?filepath=org/slf4j/slf4j-api/1.8.0-alpha2/slf4j-api-1.8.0-alpha2.jar", "commons2.jar" : "https://search.maven.org/remotecontent?filepath=org/apache/commons/commons-math3/3.6.1/commons-math3-3.6.1.jar"}
+
+for key in dico_addresses.keys():
+    path = downloadFile(dico_addresses[key], entries, key)
+    createJavaDependencies(entries, path)
+
+refreshResource(entries.getProject())
+```
+
+You can see that the code is really small comparing to the previous version, and by creating this new EASE Module, you have simplify a lot of task you would may like to do again.
 
 ## Conclusion
 - not easy, no auto-completion
