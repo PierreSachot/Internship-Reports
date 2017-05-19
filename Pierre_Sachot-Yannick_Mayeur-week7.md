@@ -16,8 +16,10 @@ creating Readme files for all projects in the Workspace? Well you actually can.
 
 Using a plugin called EASE, which stands for Eclipse Advanced Scripting
 Environment, you can EASEly script Eclipse using your favorite script language,
-like Javascript or Python. You could even code and add your own Module to EASE
-to further enhance you and the community's scripting experience.
+like Javascript or Python. EASE is composed of modules that implement new
+functionnalities to your scripting language, and they are what makes EASE great.
+You could even code and add your own Module to EASE to further enhance you and
+the community's scripting experience.
 
 Try it out by installing
 [EASE](http://download.eclipse.org/ease/update/release), but take care not
@@ -55,7 +57,7 @@ def find_replace(find, replace):
 executeUI("find_replace('private', 'public')")
 ```
 
-You can see that this code is really simple, because you can have an access to every Eclipse elements by functions writed with modules. 
+You can see that this code is really simple, because you can have an access to every Eclipse elements by functions writed with modules.
 Create this function in Java would be really complicated to write and bigger than this code.
 
 ### Our project:
@@ -105,7 +107,7 @@ global project
 
 def create_java_project(name):
     global project
-    
+
     project = getProject(name)
     if project.exists():
         raise Exception("Project {} already exists".format(name))
@@ -188,8 +190,8 @@ EASE is a very usfull tool you can use to rapidly extend Eclipse to automate a
 task, or to prototype an Eclipse Plug-in you want to write. Sadly EASE only is
 in its early stages and there still is a lot of room for improvements. For
 example there is no mixed Java/Python completiton making writing code a bit
-harder if you haven't read the documentation relative to the EASE module you
-are using. A lot more modules must be written in order to be able to use
-Eclipse at it maximum through scripts. The Eclipse foundation recognised the
-use for such a tool as it got a Community Award in 2016 for Most Innovative
-Project.
+harder if you haven't read the documentation relative to the EASE module you are
+using, or trying to use java methods on java objects in you script. A lot more
+modules must be written in order to be able to use Eclipse at it maximum through
+scripts. The Eclipse foundation recognised the use for such a tool as it got a
+Community Award in 2016 for Most Innovative Project.
