@@ -2,12 +2,12 @@
 
 ## Context:
 
-This week, I was back on January project, more specifically on Junit Tests. We managed to test two function of the Maths.java which are: arctan2() function and abs() to calculate the absolute value of a Dataset.
-I worked more on the second function, those tests were really similar so we decided to create a ParameterizeTest class, this are tests that can be apply on a same code, with only variable changing, it can be values to test a function with a lot of values and see which one is failling, or like in our case on some class types.
+This week, I was back on January project, more specifically on Junit Tests. We needed to test two function of the Maths.java which are: arctan2() function and abs() to calculate the absolute value of a Dataset.
+I worked more on the second function, and as those two functions were really similar so we decided to create a ParameterizeTest class to include the first funcion too. This is a test that could be applied to both series of code, with only variable changing, it can be used to test a function with a lot of values and see which one is failling, or like in our case by changing the class type.
 
 ## Tests before using Parameterized Tests:
 
-Our tests where really similar:
+As you can see bellow, those two tests were really similar:
 
 ```Java
 @Test
@@ -45,7 +45,11 @@ public void testAbsbyteInput() {
 
 ```
 
-and this test was for 6 different classes. So now you need to identify what is similar and what is changing in all the tests, what you can change to be more similar. Here the actualResult need to be in the result type we want, because that what's we wanted to test, but the expected result type can be as we want:
+Here I only put the example for 2 classes, but we used it for 6 different classes.So now we needed to identify what was similar and what was different in all the tests, and what could be changed to make them more similar.
+
+Here the `actualResult` needed to be in the result type we wanted, because that what's we needed to test, but the expected result type could be written however we wanted it:
+
+So now you need to identify what is similar and what is changing in all the tests, what you can change to be more similar. Here the actualResult need to be in the result type we want, because that what's we wanted to test, but the expected result type can be as we want:
 
 ```Java
 public void testAbsDoubleInput() {
@@ -81,7 +85,7 @@ public void testAbsbyteInput() {
   TestUtils.assertDatasetEquals(expectedResult, actualResult, true, ABSERRD, ABSERRD);
 ```
 
-Here in the Dataset constructor, you can see that we are creating a ByteDataset from a double array. This is possible because Dataset class allows the user to do it. Now you can see that the only thing that the only thing that will change in our tests is the class variable to create the Dataset.
+Here in the Dataset constructor, you can see that we are created a ByteDataset from a double array. This is possible because Dataset class allows the user to do it. Now you can see that the only thing that the only thing that will change in our tests is the class variable to create the Dataset.
 
 So, you can write a variable which will take the class type, like that:
 
@@ -97,7 +101,7 @@ public void testAbsbyteInput() {
 
 ## Tests using Parameterized Tests:
 
-Now you can write a parameterize class test to reduce your code size and simplify your tests:
+So once you can write a parameterize class test to reduce your code size and simplify your tests:
 
 ```Java
 package org.eclipse.january.dataset;
@@ -150,3 +154,7 @@ public class MathsBasicTypeAbsFunctionParameterizeTest {
 ```
 
 Here, the function data() is the one which will be called to change the data type. Now you have a parameterize test which will work with every class which extends Dataset.
+
+## Conclusion:
+
+Now you know how to reduce your tests code, identify things which are the same between your tests, it's now possible to code tests efficiently, by winning time and avoiding code duplication, this is why Parameterized Tests are really usefull and you need to use them.
