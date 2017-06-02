@@ -2,7 +2,7 @@
 
 ## I- Context
 
-During this week, we needed to add MSYS2 toolchain to Eclipse CDT, we finally understand that it was already the case, but was made in MinGW toolchain, which is a really bad thing for the user which doesn't know what he is using. Previous developers didthat because MSYS2 is using MinGW.
+During this week, we needed to add MSYS2 toolchain to Eclipse CDT. After some researched, we finally understand that it was already the case, but was made in MinGW toolchain, which is a really bad thing for the user which doesn't know what he is using. Previous developers didthat because MSYS2 is using MinGW.
 
 ## II- Where Toolchains are ?
 
@@ -642,4 +642,8 @@ to do that, it's really simple, you just need to find the templates inside of th
 
 ![MSYS2 package](https://github.com/PierreSachot/Internship-Reports/blob/master/images/week%209/Screenshot_3.png)
 
-and this in every templates.
+And this in every templates.
+
+## Conclusion
+
+Adding a toolchain inside CDT isn't something really intuitive, but it can be easily by following an example as in our case. The problem is to add a completely different toolchain, to be honest, I don't really know how to adapt it and create this new one.
