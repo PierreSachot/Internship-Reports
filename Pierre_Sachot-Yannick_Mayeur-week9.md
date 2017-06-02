@@ -2,7 +2,7 @@
 
 ## I- Context
 
-During this week, we needed to add MSYS2 toolchain to Eclipse CDT, we finally understand that it was already the case, but was made in MinGW toolchain, which is a really bad thing for the user which doesn't know what he is using.
+During this week, we needed to add MSYS2 toolchain to Eclipse CDT, we finally understand that it was already the case, but was made in MinGW toolchain, which is a really bad thing for the user which doesn't know what he is using. Previous developers didthat because MSYS2 is using MinGW.
 
 ## II- Where Toolchains are ?
 
@@ -514,7 +514,132 @@ After that there is a lot of tools to create, so we just copy and past the same 
 </toolChain> 
 ```
 
+This provides all tools for makes working perfectly MinGW and by the same way MSYS2.
 
+## IV- Projects types
 
-## IV- Projects examples
+We have a working Toolchain, but now we need to create some projects types. 
+This means that you need to create some projects types like that:
 
+```XML
+<projectType
+            buildArtefactType="org.eclipse.cdt.build.core.buildArtefactType.exe"
+            id="cdt.managedbuild.target.gnu.msys2.exe"
+            isAbstract="false"
+            isTest="false"
+            >                                  
+         <configuration
+               name="%ConfigName.Dbg"
+               cleanCommand="rm -rf"
+               id="cdt.managedbuild.config.gnu.msys2.exe.debug"
+               parent="cdt.managedbuild.config.gnu.msys2.base"
+               buildProperties="org.eclipse.cdt.build.core.buildType=org.eclipse.cdt.build.core.buildType.debug">
+               <toolChain
+               		 superClass="cdt.managedbuild.toolchain.gnu.msys2.base"
+                     id="cdt.managedbuild.toolchain.gnu.msys2.exe.debug">
+                  <targetPlatform
+					  id="cdt.managedbuild.target.gnu.platform.msys2.exe.debug"
+					  superClass="cdt.managedbuild.target.gnu.platform.mingw.base">
+				  </targetPlatform>
+                  <tool
+                      id="cdt.managedbuild.tool.gnu.cpp.compiler.msys2.exe.debug"
+                      superClass="cdt.managedbuild.tool.gnu.cpp.compiler.mingw.base">
+                      <option
+                          id="gnu.cpp.compiler.msys2.exe.debug.option.optimization.level"
+                          superClass="gnu.cpp.compiler.option.optimization.level">
+                      </option>
+                      <option
+						  id="gnu.cpp.compiler.msys2.exe.debug.option.debugging.level"
+                          superClass="gnu.cpp.compiler.option.debugging.level">
+                      </option>
+                  </tool>
+                  <tool
+					  id="cdt.managedbuild.tool.gnu.c.compiler.msys2.exe.debug"
+                      superClass="cdt.managedbuild.tool.gnu.c.compiler.mingw.base">
+					  <option
+						  id="gnu.c.compiler.msys2.exe.debug.option.optimization.level"
+						  superClass="gnu.c.compiler.option.optimization.level">
+					  </option>
+					  <option
+						  id="gnu.c.compiler.msys2.exe.debug.option.debugging.level"
+						  superClass="gnu.c.compiler.option.debugging.level">
+					  </option>
+                  </tool>
+                  <tool
+                      id="cdt.managedbuild.tool.gnu.c.linker.msys2.exe.debug"
+                      superClass="cdt.managedbuild.tool.gnu.c.linker.mingw.base">
+                  </tool>
+                  <tool
+                      id="cdt.managedbuild.tool.gnu.cpp.linker.msys2.exe.debug"
+                      superClass="cdt.managedbuild.tool.gnu.cpp.linker.mingw.base">
+                  </tool>                  
+				  <tool
+					  id="cdt.managedbuild.tool.gnu.assembler.msys2.exe.debug"
+					  superClass="cdt.managedbuild.tool.gnu.assembler.mingw.base">
+				  </tool>   
+               </toolChain>                                   
+         </configuration>
+         <configuration
+               name="%ConfigName.Rel"
+               cleanCommand="rm -rf"
+               id="cdt.managedbuild.config.gnu.msys2.exe.release"
+               parent="cdt.managedbuild.config.gnu.msys2.base"
+               buildProperties="org.eclipse.cdt.build.core.buildType=org.eclipse.cdt.build.core.buildType.release">
+               <toolChain
+                     superClass="cdt.managedbuild.toolchain.gnu.msys2.base"
+                     id="cdt.managedbuild.toolchain.gnu.msys2.exe.release">
+                  <targetPlatform
+					  id="cdt.managedbuild.target.gnu.platform.msys2.exe.release"
+					  superClass="cdt.managedbuild.target.gnu.platform.mingw.base">
+				  </targetPlatform>
+                  <tool
+                      id="cdt.managedbuild.tool.gnu.cpp.compiler.msys2.exe.release"
+                      superClass="cdt.managedbuild.tool.gnu.cpp.compiler.msys2.base">
+                      <option
+                          id="gnu.cpp.compiler.msys2.exe.release.option.optimization.level"
+                          superClass="gnu.cpp.compiler.option.optimization.level">
+                      </option>
+                      <option
+                          id="gnu.cpp.compiler.msys2.exe.release.option.debugging.level"
+                          superClass="gnu.cpp.compiler.option.debugging.level">
+                      </option>
+                  </tool>                      
+                  <tool
+					  id="cdt.managedbuild.tool.gnu.c.compiler.msys2.exe.release"
+                      superClass="cdt.managedbuild.tool.gnu.c.compiler.mingw.base">
+                      <option
+                          id="gnu.c.compiler.msys2.exe.release.option.optimization.level"
+                          superClass="gnu.c.compiler.option.optimization.level">
+                      </option>
+                      <option
+                          id="gnu.c.compiler.msys2.exe.release.option.debugging.level"
+                          superClass="gnu.c.compiler.option.debugging.level">
+                      </option>
+                  </tool>
+                  <tool
+                      id="cdt.managedbuild.tool.gnu.c.linker.msys2.exe.release"
+                      superClass="cdt.managedbuild.tool.gnu.c.linker.mingw.base">
+                  </tool>
+                  <tool
+                      id="cdt.managedbuild.tool.gnu.cpp.linker.msys2.exe.release"
+                      superClass="cdt.managedbuild.tool.gnu.cpp.linker.mingw.base">
+                  </tool>
+				  <tool
+					  id="cdt.managedbuild.tool.gnu.assembler.msys2.exe.release"
+					  superClass="cdt.managedbuild.tool.gnu.assembler.mingw.base">
+				  </tool>   
+               </toolChain>                                                     
+         </configuration>
+      </projectType> 
+```
+
+and that for all the project types you need.
+
+## V- Templates
+
+We have a working Toolchain, but now we need to assign it to some templates or our toolchain will not be abble to be selected. 
+to do that, it's really simple, you just need to find the templates inside of the extension point: `org.eclipse.cdt.core.templateAssociations` and add your templates like that:
+
+![MSYS2 package](https://github.com/PierreSachot/Internship-Reports/blob/master/images/week%209/Screenshot_3.png)
+
+and this in every templates.
