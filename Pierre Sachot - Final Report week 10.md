@@ -35,6 +35,8 @@ The second point is that High Wycombe is at approximatly 20 minutes in train, bu
 
 About the company itself, there is no bad points for me, like I said and explained before in the "Good Points" paragraph, this is a really interesting company, the only thing I could say is that we changed a lot of projects, like every weeks at the begininng, so if you were adapt to the technologie at the end of the week, it was not the case at the beginning of the week. But after, at the end of the internship, you begin to be adapt on all the projects, so it's really nice to change too, that's why it's not a truly bad point.
 
+The thing which can be change is that we didn't have a really project to do during the entire internship, but to participate to some projects, but for our internship report, we need to have one project and to give some informations on it, like a gantt diagram, so it's a little bit more complicated to do that without a projects to do.
+
 ## Conclusion
 
 Working inside Kichwa Coders LTD was a real pleasure for me even if I know that open-source software isn't the way I will take, because I'm really interested in IA and robotics, but the team and all the knowledge I learned make this internhsip really useful and is a great human value for me.
