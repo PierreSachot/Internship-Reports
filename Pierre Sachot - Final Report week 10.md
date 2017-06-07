@@ -31,7 +31,7 @@ More than that, an other thing I liked inside of this company is that we hadn't 
 
 For me, the badest thing during this internship is that we were three french inside of this company, so for the most part of time, between us, we were talking french... I wanted to improve a lot my english, and I think that this is the bad point of this internship, because I didn't talk as much as I expected english. 
 
-The second point is that High Wycombe is at approximatly 20 minutes in train, but this cost a lot... 26£ to a return ticket, that's why my english speaking was limited too.
+The second point is that High Wycombe is at approximatly 20 minutes in train from London, but this cost a lot... 26£ to a return ticket, that's why my english speaking was limited too.
 
 About the company itself, there is no bad points for me, like I said and explained before in the "Good Points" paragraph, this is a really interesting company, the only thing I could say is that we changed a lot of projects, like every weeks at the begininng, so if you were adapt to the technologie at the end of the week, it was not the case at the beginning of the week. But after, at the end of the internship, you begin to be adapt on all the projects, so it's really nice to change too, that's why it's not a truly bad point.
 
